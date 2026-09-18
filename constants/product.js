@@ -1,0 +1,11 @@
+module.exports = {
+  // database constants
+  PRODUCT_BADGES: ["BEST_SELLER", "TOP_SELLING", "LIMITED_EDITION", ""],
+  PRODUCT_REMOTE: [
+    "MINIMUL_SPEED_REMOTE",
+    "SPEED_WITH_DIRECTION",
+    "LIGHT_SPEED_WITH_DIRECTION",
+    "SMART_TIMER_REMOTE",
+    "",
+  ],
+};
