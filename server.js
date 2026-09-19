@@ -20,9 +20,19 @@ const app = express();
 const defaultAllowedOrigins = [
   "http://localhost:5173",
   "http://127.0.0.1:5173",
+  "http://localhost:5174",
+  "http://127.0.0.1:5174",
   "http://localhost:5175",
+  "http://127.0.0.1:5175",
   "http://localhost:3000",
   "http://127.0.0.1:3000",
+  "http://localhost:3001",
+  "http://127.0.0.1:3001",
+  "https://colin-admin.esta-dev.com",
+  "https://colin.esta-dev.com",
+  "https://colin-mclean.esta-dev.com",
+  "https://colin-mclean.com",
+  "https://www.colin-mclean.com",
   "https://ifma-admin.esta-dev.com",
   "https://ifma.esta-dev.com",
 ];
@@ -36,7 +46,16 @@ const allowedOrigins = new Set([...defaultAllowedOrigins, ...envAllowedOrigins])
 
 const corsOptions = {
   origin(origin, callback) {
-    if (!origin || allowedOrigins.has(origin)) {
+    if (!origin) {
+      return callback(null, true);
+    }
+
+    // Allow all local development origins (localhost or 127.0.0.1 on any port)
+    if (/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) {
+      return callback(null, true);
+    }
+
+    if (allowedOrigins.has(origin)) {
       return callback(null, true);
     }
 
