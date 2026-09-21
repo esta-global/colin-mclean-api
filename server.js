@@ -28,11 +28,19 @@ const defaultAllowedOrigins = [
   "http://127.0.0.1:3000",
   "http://localhost:3001",
   "http://127.0.0.1:3001",
+  "https://colin-mclean-admin.esta-dev.com",
+  "http://colin-mclean-admin.esta-dev.com",
   "https://colin-admin.esta-dev.com",
-  "https://colin.esta-dev.com",
+  "http://colin-admin.esta-dev.com",
   "https://colin-mclean.esta-dev.com",
+  "http://colin-mclean.esta-dev.com",
+  "https://colin.esta-dev.com",
+  "http://colin.esta-dev.com",
+  "https://colin-mclean-api.esta-dev.com",
   "https://colin-mclean.com",
   "https://www.colin-mclean.com",
+  "https://admin.colin-mclean.com",
+  "https://www.admin.colin-mclean.com",
   "https://ifma-admin.esta-dev.com",
   "https://ifma.esta-dev.com",
 ];
@@ -55,15 +63,34 @@ const corsOptions = {
       return callback(null, true);
     }
 
+    // Allow any esta-dev.com or colin-mclean.com or vercel.app preview/production subdomains
+    if (
+      /^https?:\/\/([a-z0-9-]+\.)*esta-dev\.com(:\d+)?$/i.test(origin) ||
+      /^https?:\/\/([a-z0-9-]+\.)*colin-mclean\.com(:\d+)?$/i.test(origin) ||
+      /^https?:\/\/([a-z0-9-]+\.)*vercel\.app(:\d+)?$/i.test(origin)
+    ) {
+      return callback(null, true);
+    }
+
     if (allowedOrigins.has(origin)) {
       return callback(null, true);
     }
 
-    return callback(new Error(`Not allowed by CORS: ${origin}`));
+    return callback(null, false);
   },
   credentials: true,
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "HEAD"],
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "X-Requested-With",
+    "Accept",
+    "Origin",
+    "Cache-Control",
+    "Pragma",
+    "Access-Control-Request-Method",
+    "Access-Control-Request-Headers",
+  ],
   optionsSuccessStatus: 204,
 };
 
