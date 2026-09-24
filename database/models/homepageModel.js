@@ -26,6 +26,30 @@ const lectureItemSchema = new mongoose.Schema(
   { _id: false }
 );
 
+const topicItemSchema = new mongoose.Schema(
+  {
+    number: stringField,
+    title: stringField,
+    description: stringField,
+    image: stringField,
+    href: stringField,
+  },
+  { _id: false }
+);
+
+const essayItemSchema = new mongoose.Schema(
+  {
+    title: stringField,
+    paragraph: stringField,
+    category: stringField,
+    date: stringField,
+    readingTime: stringField,
+    image: stringField,
+    href: stringField,
+  },
+  { _id: false }
+);
+
 const heroSectionSchema = new mongoose.Schema(
   {
     eyebrow: { ...stringField, default: "Investor · Writer · Lecturer" },
@@ -55,6 +79,7 @@ const topicsSectionSchema = new mongoose.Schema(
     eyebrow: { ...stringField, default: "Focus areas" },
     title: { ...stringField, default: "Key Topics" },
     description: { ...stringField, default: "Explore core subjects across markets, business, public policy and society." },
+    items: [topicItemSchema],
   },
   { _id: false }
 );
@@ -77,6 +102,7 @@ const essaysPreviewSectionSchema = new mongoose.Schema(
     eyebrow: { ...stringField, default: "Recent blogs" },
     title: { ...stringField, default: "Blogs" },
     description: { ...stringField, default: "Recent articles, insights and commentary on markets, business, behaviour and public policy." },
+    items: [essayItemSchema],
   },
   { _id: false }
 );

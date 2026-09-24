@@ -41,8 +41,7 @@ const defaultAllowedOrigins = [
   "https://www.colin-mclean.com",
   "https://admin.colin-mclean.com",
   "https://www.admin.colin-mclean.com",
-  "https://ifma-admin.esta-dev.com",
-  "https://ifma.esta-dev.com",
+
 ];
 
 const envAllowedOrigins = (process.env.CORS_ORIGINS || "")

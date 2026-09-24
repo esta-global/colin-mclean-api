@@ -28,10 +28,29 @@ const perspectivesSectionSchema = Joi.object({
     .label("Perspective Items"),
 }).allow(null);
 
+const topicItemSchema = Joi.object({
+  number: stringField("Number"),
+  title: stringField("Title"),
+  description: stringField("Description"),
+  image: stringField("Image"),
+  href: stringField("Link"),
+});
+
+const essayItemSchema = Joi.object({
+  title: stringField("Title"),
+  paragraph: stringField("Paragraph"),
+  category: stringField("Category"),
+  date: stringField("Date"),
+  readingTime: stringField("Reading Time"),
+  image: stringField("Image"),
+  href: stringField("Link"),
+});
+
 const topicsSectionSchema = Joi.object({
   eyebrow: stringField("Topics Eyebrow"),
   title: stringField("Topics Title"),
   description: stringField("Topics Description"),
+  items: Joi.array().items(topicItemSchema).label("Topic Items"),
 }).allow(null);
 
 const aboutPreviewSectionSchema = Joi.object({
@@ -48,6 +67,7 @@ const essaysPreviewSectionSchema = Joi.object({
   eyebrow: stringField("Essays Eyebrow"),
   title: stringField("Essays Title"),
   description: stringField("Essays Description"),
+  items: Joi.array().items(essayItemSchema).label("Essay Items"),
 }).allow(null);
 
 const lecturesSectionSchema = Joi.object({
