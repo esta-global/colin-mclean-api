@@ -97,8 +97,8 @@ app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
 
 // Keep API payload limits aligned with media uploads and CMS content.
-app.use(bodyParser.json({ limit: "25mb" }));
-app.use(bodyParser.urlencoded({ extended: true, limit: "25mb" }));
+app.use(bodyParser.json({ limit: "250mb" }));
+app.use(bodyParser.urlencoded({ extended: true, limit: "250mb" }));
 
 // Serve files from the 'uploads' directory
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
@@ -148,7 +148,7 @@ app.use((err, req, res, next) => {
   if (err?.type === "entity.too.large" || err?.code === "LIMIT_FILE_SIZE") {
     return res.status(413).send({
       status: 413,
-      message: "Upload is too large. The maximum allowed file size is 20 MB.",
+      message: "Upload is too large. The maximum allowed file size is 250 MB.",
     });
   }
 

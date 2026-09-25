@@ -30,11 +30,11 @@ const storage = multer.diskStorage({
   },
 });
 
-// The CMS accepts up to ten images per request, with each image capped at 20 MB.
+// The CMS accepts up to ten files per request, with each file capped at 250 MB.
 module.exports.upload = multer({
   storage,
   limits: {
-    fileSize: 20 * 1024 * 1024,
+    fileSize: 250 * 1024 * 1024,
     files: 10,
   },
 });
