@@ -41,6 +41,9 @@ const defaultAllowedOrigins = [
   "https://www.colin-mclean.com",
   "https://admin.colin-mclean.com",
   "https://www.admin.colin-mclean.com",
+  "https://api.articlesbycolin.com",
+  "https://articlesbycolin.com",
+  "https://admin.articlesbycolin.com",
 
 ];
 
